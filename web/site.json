@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "name": "minekg",
+  "github": "https://github.com/SuperMarioYL/minekg",
+  "host": "minekg.lei6393.com",
+  "lang": { "primary": "zh", "toggle": true },
+  "accent": ["#3b82f6", "#2bb673", "#14b8a6"],
+  "hero": {
+    "eyebrow": {
+      "zh": "本地优先 · 一句话问答 · 答案带出处 · 开源 MIT",
+      "en": "Local first · Ask in one line · Answers with receipts · Open source MIT"
+    },
+    "headline": {
+      "zh": "把散落的账单、流水与笔记拼成一张能问答的图",
+      "en": "Fuse your scattered bills, statements and notes into a graph you can query"
+    },
+    "sub": {
+      "zh": "把微信里的「小张」、支付宝备注的「张三」和银行流水里的「张*」认成同一个人，然后用一句话问回你的数据。",
+      "en": "It recognizes the \"小张\" in WeChat, the \"张三\" in an Alipay remark and the \"张*\" in your bank statement as the same person — then lets you ask your data a single question."
+    },
+    "command": "minekg ingest examples/exports && minekg link && minekg ask \"去年和小张相关的所有资金往来合计\"",
+    "cta": {
+      "zh": "10 分钟从 git clone 到带凭证的答案。本地优先，MIT 开源。",
+      "en": "10 minutes from git clone to a receipt-backed answer. Local first, MIT open source."
+    },
+    "ctaGithub": {
+      "zh": "在 GitHub 上查看",
+      "en": "View on GitHub"
+    },
+    "scroll": {
+      "zh": "向下看怎么用",
+      "en": "See how it works"
+    }
+  },
+  "advantages": [
+    {
+      "title": {
+        "zh": "把散落的导出拼成一张图",
+        "en": "Stitch scattered exports into one graph"
+      },
+      "body": {
+        "zh": "微信聊天记录、支付宝账单、银行流水 PDF、个人笔记——丢进同一个目录，自动识别来源，融合成一份每条都带出处的记录。",
+        "en": "WeChat chats, Alipay bills, bank-statement PDFs, personal notes — drop them in one folder; each source is auto-detected and fused into one record set where every row keeps its origin."
+      },
+      "chips": [
+        "› 微信 / 支付宝 / 银行 / 笔记",
+        "› 自动识别来源",
+        "› 每条记录带出处"
+      ]
+    },
+    {
+      "title": {
+        "zh": "把「小张」「张三」「张*」认成同一个人",
+        "en": "See \"小张\", \"张三\" and \"张*\" as one person"
+      },
+      "body": {
+        "zh": "微信里的「小张」、支付宝备注的「张三」、银行流水里的「张*」——都归到同一个人，跨来源对账不再靠人脑拼。",
+        "en": "The \"小张\" in WeChat, the \"张三\" in an Alipay remark, the \"张*\" in a bank statement — all resolve to one person, so cross-source reconciliation stops being a mental puzzle."
+      },
+      "chips": [
+        "› 跨来源对账",
+        "› 歧义自动标记",
+        "› 三处来源 → 一个人"
+      ]
+    },
+    {
+      "title": {
+        "zh": "一句话问回，答案带出处",
+        "en": "Ask in one line, get answers with receipts"
+      },
+      "body": {
+        "zh": "「去年和小张相关的所有资金往来合计」——直接返回数字，并附逐行出处表：哪条来源、哪一行、哪个人。",
+        "en": "\"All money moved with 小张 last year\" — you get a number plus a per-row receipt: which source, which row, which person."
+      },
+      "chips": [
+        "› 一句话问答",
+        "› 数字 + 逐行出处",
+        "› 合计 / 笔数 / 平均"
+      ]
+    },
+    {
+      "title": {
+        "zh": "账单不离开你的电脑",
+        "en": "Your bills never leave your machine"
+      },
+      "body": {
+        "zh": "原始导出文件留在本机，只有短文本片段会出去做识别；图也存在你自己拥有的一个本地文件里。",
+        "en": "Raw export files stay on your machine — only short text snippets leave for recognition — and the graph lives in a single local file you own."
+      },
+      "chips": [
+        "› 原始文件不出本机",
+        "› 图存本地，归你所有",
+        "› 不联网也能跑通 demo"
+      ]
+    }
+  ],
+  "scene": { "kind": "mesh" },
+  "cta": {
+    "headline": {
+      "zh": "10 分钟，从 git clone 到带凭证的答案",
+      "en": "10 minutes from git clone to a receipt-backed answer"
+    },
+    "sub": {
+      "zh": "本地优先，永久免费；MIT 开源——欢迎报 bug 或附上一份匿名真实多源导出来复现。",
+      "en": "Local first and free forever; MIT open source — file a bug, or attach an anonymized real multi-source export to reproduce."
+    },
+    "button": {
+      "zh": "开始用 MineKG",
+      "en": "Get started with MineKG"
+    }
+  },
+  "footer": {
+    "tag": {
+      "zh": "MineKG — 本地优先，把你散落的账单拼成一张能问答的图。MIT 开源。",
+      "en": "MineKG — local first, turning your scattered bills into a graph you can ask. MIT open source."
+    }
+  }
+}
