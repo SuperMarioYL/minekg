@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+build/
+dist/
+.eggs/
+*.whl
+*.tar.gz
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# Test / coverage artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# Local MineKG state (never ship a user's personal data)
+.minekg/
+*.db
+*.jsonl
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+
+# build scratch
+.build_metadata*
+.builder_*
+_build_ctx.json
+_build_*
+BUILD_SETUP_NEXT_STEPS.md
+.spawn.*
+.stage_*
+PUBLISH_BLOCKED.md
+GIT_AUTHOR_DRIFT.md
+DRIFT_REPORT.md
+
+# assistant tooling
+.claude/
+CLAUDE.md

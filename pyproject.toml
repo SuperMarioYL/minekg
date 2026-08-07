@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "minekg"
+version = "0.1.0"
+description = "把你散落的微信/支付宝/银行流水与笔记融合成可自然语言查询的个人知识图谱"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "SuperMarioYL" }]
+keywords = [
+    "knowledge-graph",
+    "ner",
+    "chinese-nlp",
+    "rag",
+    "personal-finance",
+    "wechat",
+    "alipay",
+    "sqlite",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: Chinese (Simplified)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Database",
+    "Topic :: Text Processing :: Linguistic",
+]
+dependencies = [
+    "typer>=0.12",
+    "pdfplumber>=0.11",
+    "openai>=1.40",
+    "rich>=13",
+]
+
+[project.scripts]
+minekg = "minekg.cli:cli_entry"
+
+[project.urls]
+Homepage = "https://github.com/SuperMarioYL/minekg"
+Repository = "https://github.com/SuperMarioYL/minekg"
+Issues = "https://github.com/SuperMarioYL/minekg/issues"
+
+[tool.setuptools]
+packages = ["minekg", "minekg.sources"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 360" width="880" height="360"
+     font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif"
+     role="img" aria-label="Architecture: exports → NER + cross-source linkage → SQLite KG + NL query">
+  <defs>
+    <marker id="ah-d" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#5A5A66"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="880" height="360" fill="#1D1D1F"/>
+
+  <!-- connectors: static base lines -->
+  <g stroke="#3A3A44" stroke-width="1.5" fill="none">
+    <line x1="210" y1="180" x2="310" y2="180" marker-end="url(#ah-d)"/>
+    <line x1="530" y1="180" x2="630" y2="180" marker-end="url(#ah-d)"/>
+  </g>
+  <!-- marching-dash data flow (infinite, rightward = data direction) -->
+  <g stroke-width="1.5" fill="none" stroke-linecap="round">
+    <line x1="210" y1="180" x2="306" y2="180" stroke="#4DA3FF" stroke-opacity="0.5" stroke-dasharray="6 10">
+      <animate attributeName="stroke-dashoffset" from="32" to="0" dur="1.6s" repeatCount="indefinite"/>
+    </line>
+    <line x1="530" y1="180" x2="626" y2="180" stroke="#8985FF" stroke-opacity="0.5" stroke-dasharray="6 10">
+      <animate attributeName="stroke-dashoffset" from="32" to="0" dur="1.6s" begin="-0.8s" repeatCount="indefinite"/>
+    </line>
+  </g>
+  <!-- data packets along connectors -->
+  <g>
+    <circle r="3" fill="#4DA3FF">
+      <animateMotion path="M210,180 L306,180" dur="2.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.4s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="3" fill="#8985FF">
+      <animateMotion path="M530,180 L626,180" dur="2.4s" begin="-1.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.85;1" dur="2.4s" begin="-1.2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- nodes -->
+  <g>
+    <rect x="40" y="140" width="170" height="80" rx="15" fill="#4DA3FF" fill-opacity="0.16" stroke="#4DA3FF" stroke-width="1.5">
+      <animate attributeName="fill-opacity" values="0.16;0.24;0.16" keyTimes="0;0.5;1" dur="3.2s"
+               calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" repeatCount="indefinite"/>
+    </rect>
+    <text x="125" y="176" text-anchor="middle" font-size="15" font-weight="600" fill="#4DA3FF">Sources</text>
+    <text x="125" y="197" text-anchor="middle" font-size="11" fill="#A1A1A8">微信·支付宝·银行·笔记</text>
+
+    <rect x="355" y="140" width="170" height="80" rx="15" fill="#8985FF" fill-opacity="0.16" stroke="#8985FF" stroke-width="1.5">
+      <animate attributeName="fill-opacity" values="0.16;0.24;0.16" keyTimes="0;0.5;1" dur="3.2s" begin="-1.1s"
+               calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" repeatCount="indefinite"/>
+    </rect>
+    <text x="440" y="176" text-anchor="middle" font-size="15" font-weight="600" fill="#8985FF">NER + Linkage</text>
+    <text x="440" y="197" text-anchor="middle" font-size="11" fill="#A1A1A8">中文NER · 跨源 canonical_id</text>
+
+    <rect x="670" y="140" width="170" height="80" rx="15" fill="#2DC79A" fill-opacity="0.16" stroke="#2DC79A" stroke-width="1.5">
+      <animate attributeName="fill-opacity" values="0.16;0.24;0.16" keyTimes="0;0.5;1" dur="3.2s" begin="-2.2s"
+               calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" repeatCount="indefinite"/>
+    </rect>
+    <text x="755" y="176" text-anchor="middle" font-size="15" font-weight="600" fill="#2DC79A">KG + Ask</text>
+    <text x="755" y="197" text-anchor="middle" font-size="11" fill="#A1A1A8">SQLite · NL→SQL · provenance</text>
+  </g>
+
+  <text x="440" y="60" text-anchor="middle" font-size="13" font-weight="600" fill="#F5F5F7">local-first · raw exports never leave your machine</text>
+  <text x="440" y="320" text-anchor="middle" font-size="12" fill="#A1A1A8">Record{source, provenance, ts, entities} → canonical_id → SQLite KG → NL answer + per-row provenance</text>
+</svg>
