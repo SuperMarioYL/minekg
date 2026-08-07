@@ -21,11 +21,11 @@
 
 > **把散落在微信、支付宝、银行流水与笔记里的「小张」识别成同一个人，然后用一句话问回你的数据。**
 
-## 为什么是现在
+<h2><img src="https://api.iconify.design/tabler:bulb.svg?color=%230071E3&width=24" height="22" align="absmiddle" alt=""> 为什么是现在</h2>
 
 [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify)（103k stars）证明了一件事：把代码库用确定性 AST 解析、不依赖向量库、每条边可溯源，变成可查询的知识图谱——这套原语已经是被验证的热门方向。它以一个 `/graphify` **Skill** 的形态跑在 **Claude Code** 和 Cursor 里。MineKG 做的是同构迁移：把那个「结构化数据 → 可查询 KG」的原语，从「代码库」搬到「中国普通用户散落的个人数据导出」上。中国 NER（人名/地名/机构/时间）已是 commodity，PIPL 让微信/支付宝/银行都（勉为其难地）开放了导出——三件事同时就绪，这个消费侧接口才第一次可达。不是 graphify 的中文版，而是一个新的 load-bearing 原语：**跨源实体链接**。
 
-## 目录
+<h2><img src="https://api.iconify.design/tabler:list.svg?color=%230071E3&width=24" height="22" align="absmiddle" alt=""> 目录</h2>
 
 - [架构](#架构)
 - [安装与快速开始](#安装与快速开始)
@@ -140,7 +140,7 @@ minekg resolve
 - [ ] **m3**：`minekg resolve` rich TUI 逐条确认/合并被标记实体对；多银行 PDF 解析器注册表（社区可贡献「一个银行一个解析器」）
 - [ ] 未来：更多来源（券商/公积金）、年度复盘一键报告、本地优先的「家庭/团队对账」托管层
 
-## 付费：家庭/团队对账托管
+<h2><img src="https://api.iconify.design/tabler:credit-card.svg?color=%230071E3&width=24" height="22" align="absmiddle" alt=""> 付费：家庭/团队对账托管</h2>
 
 面向 **商业用户**（commercial audience）。本地 CLI 永久免费、本地拥有、单用户——这是它处理个人账单/流水所必须的信任前提。付费方向是已命名、当前不建的**托管层**：
 
@@ -155,7 +155,7 @@ minekg resolve
 
 MIT，见 [LICENSE](./LICENSE)。欢迎在 [Issues](https://github.com/SuperMarioYL/minekg/issues) 报 bug 或附上匿名真实多源导出复现；PR 走 Fork → 分支 → PR。
 
-## 分享
+<h2><img src="https://api.iconify.design/tabler:share.svg?color=%230071E3&width=24" height="22" align="absmiddle" alt=""> 分享</h2>
 
 ```
 MineKG — 把微信/支付宝/银行流水/笔记融合成可自然语言查询的本地知识图谱。沿用 graphify 的 Claude Code Skill 原语，但接的是中国普通用户的个人数据导出。git clone 后 10 分钟从「小张」问到 500 元带凭证。 https://github.com/SuperMarioYL/minekg

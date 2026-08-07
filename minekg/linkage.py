@@ -135,7 +135,7 @@ def link(records: list, client=None) -> LinkageResult:
                     # don't lock the canonical yet — may merge into a full name
                     masked = ent.surface_form.endswith("*") or ent.surface_form.endswith("＊")
                     person_surname.setdefault(key, []).append((None, ent.surface_form, masked))
-                    # placeholder canonical; resolved below
+                    # tentative canonical; resolved below
                     ent.canonical_id = f"person:{key}"
                 else:
                     ent.canonical_id = canonical_for(PERSON, ent.surface_form)

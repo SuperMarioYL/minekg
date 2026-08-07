@@ -22,11 +22,11 @@
 
 > **Recognize the "小张" scattered across your WeChat, Alipay, bank statements and notes as one person — then ask your data a single question.**
 
-## Why now
+<h2><img src="https://api.iconify.design/tabler:bulb.svg?color=%230071E3&width=24" height="22" align="absmiddle" alt=""> Why now</h2>
 
 [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) (103k stars) proved the primitive: turn a codebase into a queryable knowledge graph with deterministic AST parsing, no vector store, every edge explained — shipped as a `/graphify` **Skill** for **Claude Code** and Cursor. MineKG is an isomorphic transfer of that "structured-data → queryable KG" primitive from codebases to a Chinese ordinary user's scattered personal-data exports. Chinese NER (person/place/org/time) is now commodity, and PIPL pushed 微信/支付宝/银行 to (grudgingly) offer exports — the three enablers are simultaneously in place for the first time, so the consumer surface is finally reachable. It is not "graphify in Chinese"; the load-bearing novelty is **cross-source entity-linkage** — the natural-language RAG layer runs on a KG you own, with every row traceable to a source.
 
-## Table of contents
+<h2><img src="https://api.iconify.design/tabler:list.svg?color=%230071E3&width=24" height="22" align="absmiddle" alt=""> Table of contents</h2>
 
 - [Architecture](#architecture)
 - [Install & quickstart](#install--quickstart)
@@ -140,7 +140,7 @@ Honestly: on codebases graphify is far more mature and faster than we are; MineK
 - [ ] **m3**: `minekg resolve` rich TUI to confirm/merge flagged entity pairs; a multi-bank PDF parser registry (community can contribute "one bank = one parser")
 - [ ] Future: more sources (brokerage / 公积金), one-shot annual-review reports, a local-first household/team reconciliation hosting tier
 
-## Paid: household / team reconciliation hosting
+<h2><img src="https://api.iconify.design/tabler:credit-card.svg?color=%230071E3&width=24" height="22" align="absmiddle" alt=""> Paid: household / team reconciliation hosting</h2>
 
 For the **commercial audience**. The local CLI is free forever, locally owned, single-user — the trust prerequisite for a tool that touches personal bills/statements. The paid direction is the named, explicitly-not-built-now **hosting tier**:
 
@@ -155,7 +155,7 @@ See GTM §8. Local-first is the floor; hosting is opt-in and never replaces the 
 
 MIT — see [LICENSE](./LICENSE). File a bug or attach an anonymized real multi-source export in [Issues](https://github.com/SuperMarioYL/minekg/issues); PRs via Fork → branch → PR.
 
-## Share this
+<h2><img src="https://api.iconify.design/tabler:share.svg?color=%230071E3&width=24" height="22" align="absmiddle" alt=""> Share this</h2>
 
 ```
 MineKG — fuse WeChat/Alipay/bank/notes exports into one local-first, NL-queryable KG. The Skill primitive from graphify, applied to a Chinese user's scattered personal data. 10 minutes from clone to "how much did I pay 小张 last year — 500元, with receipts." https://github.com/SuperMarioYL/minekg
