@@ -1,0 +1,94 @@
+{
+  "name": "MineKG",
+  "tagline": "Get an aggregate with the rows behind it.",
+  "architecture": {
+    "title": "Exports to linked records and answers",
+    "nodes": [
+      {
+        "title": "Export adapters",
+        "detail": "Text, CSV, PDF and notes"
+      },
+      {
+        "title": "Entity extraction",
+        "detail": "Rules or configured model"
+      },
+      {
+        "title": "Alias linkage",
+        "detail": "Canonical IDs and ambiguities"
+      },
+      {
+        "title": "SQLite graph",
+        "detail": "Records, aliases and sources"
+      },
+      {
+        "title": "Rule query",
+        "detail": "Aggregate with provenance"
+      }
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ]
+    ]
+  },
+  "process": {
+    "title": "Query the supplied synthetic exports",
+    "steps": [
+      {
+        "title": "Import records",
+        "detail": "Eleven records, three sources"
+      },
+      {
+        "title": "Link aliases",
+        "detail": "One ambiguity retained"
+      },
+      {
+        "title": "Query year 2025",
+        "detail": "Match 小张 to 张三"
+      },
+      {
+        "title": "Review amount rows",
+        "detail": "200 + 300 = 500"
+      }
+    ],
+    "result": "Gross amount sum with two source rows, not net cash flow."
+  },
+  "integrations": {
+    "title": "Selected personal export formats",
+    "items": [
+      {
+        "title": "WeChat TXT",
+        "detail": "Timestamped messages"
+      },
+      {
+        "title": "Alipay CSV",
+        "detail": "Amount records"
+      },
+      {
+        "title": "Bank PDF",
+        "detail": "Supported text-line format"
+      },
+      {
+        "title": "Markdown",
+        "detail": "Note records"
+      },
+      {
+        "title": "SQLite",
+        "detail": "Local graph and provenance"
+      }
+    ]
+  }
+}

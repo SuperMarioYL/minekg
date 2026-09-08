@@ -1,118 +1,229 @@
 {
-  "schema": 1,
-  "name": "minekg",
+  "schema": 3,
+  "name": "MineKG",
   "github": "https://github.com/SuperMarioYL/minekg",
   "host": "minekg.lei6393.com",
-  "lang": { "primary": "zh", "toggle": true },
-  "accent": ["#3b82f6", "#2bb673", "#14b8a6"],
+  "palette": "auto",
+  "lang": {
+    "primary": "zh",
+    "toggle": true
+  },
+  "meta": {
+    "visual_profile": "neon-particle",
+    "demo_source": "docs/demo-results.json",
+    "implementation_version": "0.1.0"
+  },
   "hero": {
     "eyebrow": {
-      "zh": "本地优先 · 一句话问答 · 答案带出处 · 开源 MIT",
-      "en": "Local first · Ask in one line · Answers with receipts · Open source MIT"
+      "zh": "个人导出 · SQLite 与来源记录",
+      "en": "PERSONAL EXPORTS · SQLITE AND PROVENANCE"
     },
     "headline": {
-      "zh": "把散落的账单、流水与笔记拼成一张能问答的图",
-      "en": "Fuse your scattered bills, statements and notes into a graph you can query"
+      "zh": "数据散在不同导出里，\n结果仍能回到原始行。",
+      "en": "Join exported records.\nKeep the source rows in view."
     },
     "sub": {
-      "zh": "把微信里的「小张」、支付宝备注的「张三」和银行流水里的「张*」认成同一个人，然后用一句话问回你的数据。",
-      "en": "It recognizes the \"小张\" in WeChat, the \"张三\" in an Alipay remark and the \"张*\" in your bank statement as the same person — then lets you ask your data a single question."
+      "zh": "MineKG 将微信文本、支付宝 CSV、特定银行 PDF 和笔记导出整理到 SQLite，建立实体别名关联，并为简单查询返回原始行来源。",
+      "en": "MineKG imports WeChat text, Alipay CSV, supported bank PDFs and notes into SQLite, links entity aliases and returns source rows with simple aggregate queries."
     },
-    "command": "minekg ingest examples/exports && minekg link && minekg ask \"去年和小张相关的所有资金往来合计\"",
+    "href": "#quickstart",
     "cta": {
-      "zh": "10 分钟从 git clone 到带凭证的答案。本地优先，MIT 开源。",
-      "en": "10 minutes from git clone to a receipt-backed answer. Local first, MIT open source."
+      "zh": "运行示例",
+      "en": "Run the example"
     },
     "ctaGithub": {
-      "zh": "在 GitHub 上查看",
-      "en": "View on GitHub"
-    },
-    "scroll": {
-      "zh": "向下看怎么用",
-      "en": "See how it works"
+      "zh": "查看源码",
+      "en": "View source"
+    }
+  },
+  "scene": {
+    "kind": "neon-graph",
+    "fallback": "/assets/presentation/scene-dark.svg",
+    "fallbackLight": "/assets/presentation/scene-light.svg",
+    "caption": {
+      "zh": "问到一个合计，也找得到原始行",
+      "en": "Get an aggregate with the rows behind it."
     }
   },
   "advantages": [
     {
       "title": {
-        "zh": "把散落的导出拼成一张图",
-        "en": "Stitch scattered exports into one graph"
+        "zh": "统一来源结构",
+        "en": "Normalize export records"
       },
       "body": {
-        "zh": "微信聊天记录、支付宝账单、银行流水 PDF、个人笔记——丢进同一个目录，自动识别来源，融合成一份每条都带出处的记录。",
-        "en": "WeChat chats, Alipay bills, bank-statement PDFs, personal notes — drop them in one folder; each source is auto-detected and fused into one record set where every row keeps its origin."
-      },
-      "chips": [
-        "› 微信 / 支付宝 / 银行 / 笔记",
-        "› 自动识别来源",
-        "› 每条记录带出处"
-      ]
+        "zh": "异构导出转换为统一 Record，保留来源路径与行号。",
+        "en": "Different exports become Record objects with file and line references."
+      }
     },
     {
       "title": {
-        "zh": "把「小张」「张三」「张*」认成同一个人",
-        "en": "See \"小张\", \"张三\" and \"张*\" as one person"
+        "zh": "展示链接歧义",
+        "en": "Expose ambiguous links"
       },
       "body": {
-        "zh": "微信里的「小张」、支付宝备注的「张三」、银行流水里的「张*」——都归到同一个人，跨来源对账不再靠人脑拼。",
-        "en": "The \"小张\" in WeChat, the \"张三\" in an Alipay remark, the \"张*\" in a bank statement — all resolve to one person, so cross-source reconciliation stops being a mental puzzle."
-      },
-      "chips": [
-        "› 跨来源对账",
-        "› 歧义自动标记",
-        "› 三处来源 → 一个人"
-      ]
+        "zh": "别名关联结果同时保留需要复核的候选。",
+        "en": "Alias linkage retains candidates that need review."
+      }
     },
     {
       "title": {
-        "zh": "一句话问回，答案带出处",
-        "en": "Ask in one line, get answers with receipts"
+        "zh": "答案附来源行",
+        "en": "Return source rows"
       },
       "body": {
-        "zh": "「去年和小张相关的所有资金往来合计」——直接返回数字，并附逐行出处表：哪条来源、哪一行、哪个人。",
-        "en": "\"All money moved with 小张 last year\" — you get a number plus a per-row receipt: which source, which row, which person."
-      },
-      "chips": [
-        "› 一句话问答",
-        "› 数字 + 逐行出处",
-        "› 合计 / 笔数 / 平均"
-      ]
-    },
-    {
-      "title": {
-        "zh": "账单不离开你的电脑",
-        "en": "Your bills never leave your machine"
-      },
-      "body": {
-        "zh": "原始导出文件留在本机，只有短文本片段会出去做识别；图也存在你自己拥有的一个本地文件里。",
-        "en": "Raw export files stay on your machine — only short text snippets leave for recognition — and the graph lives in a single local file you own."
-      },
-      "chips": [
-        "› 原始文件不出本机",
-        "› 图存本地，归你所有",
-        "› 不联网也能跑通 demo"
-      ]
+        "zh": "金额查询返回相应记录，便于核对口径。",
+        "en": "Amount queries include records so the aggregation basis can be checked."
+      }
     }
   ],
-  "scene": { "kind": "mesh" },
-  "cta": {
-    "headline": {
-      "zh": "10 分钟，从 git clone 到带凭证的答案",
-      "en": "10 minutes from git clone to a receipt-backed answer"
+  "story": {
+    "intro": {
+      "title": {
+        "zh": "问到一个合计，也找得到原始行",
+        "en": "Get an aggregate with the rows behind it."
+      },
+      "body": {
+        "zh": "同一个人在不同导出中可能使用昵称、全名或掩码姓名，按单份文件检索容易漏掉相关记录。MineKG 将来源记录与别名放进同一张图，再把查询结果连回文件和行号。姓名归并是候选推断，歧义仍需人工检查。",
+        "en": "Nicknames, full names and masked names can split related records across exports. MineKG stores source records and aliases together and links query results back to files and lines. Name grouping is a candidate inference; ambiguous identities still need human review."
+      }
     },
-    "sub": {
-      "zh": "本地优先，永久免费；MIT 开源——欢迎报 bug 或附上一份匿名真实多源导出来复现。",
-      "en": "Local first and free forever; MIT open source — file a bug, or attach an anonymized real multi-source export to reproduce."
-    },
-    "button": {
-      "zh": "开始用 MineKG",
-      "en": "Get started with MineKG"
-    }
+    "sections": [
+      {
+        "title": {
+          "zh": "从输入到结果",
+          "en": "From input to result"
+        },
+        "body": {
+          "zh": "仓库三种构造导出产生 11 条记录。规则将“小张”关联到 person:张三，2025 年查询返回 500.00 元，来源是 200 与 300 两条金额记录，同时保留 1 个歧义报告。该合计把金额字段相加，不是把收入与支出相抵后的净额。",
+          "en": "Three bundled synthetic export formats produce eleven records. Rules link 小张 to person:张三; the explicit 2025 query returns 500.00 yuan from two amounts, 200 and 300, while retaining one ambiguity. This sums amount fields; it is not net income minus expenditure."
+        },
+        "image": {
+          "light": "/assets/presentation/process-light.svg",
+          "dark": "/assets/presentation/process-dark.svg",
+          "alt": {
+            "zh": "从输入到结果",
+            "en": "From input to result"
+          }
+        }
+      },
+      {
+        "title": {
+          "zh": "实现中的分工",
+          "en": "How the implementation fits together"
+        },
+        "body": {
+          "zh": "来源 adapter 产生统一 Record 与 provenance，NER 提取实体，linkage 生成 canonical_id、别名和歧义列表。kg.py 保存 records/entities/aliases 及边；ask.py 根据规则解析人物、时间和 sum/count/avg 意图，再读取关联记录。当前 ask 的 client 参数没有驱动模型生成 SQL。",
+          "en": "Source adapters produce Record objects with provenance, NER extracts entities, and linkage builds canonical IDs, aliases and ambiguity records. kg.py stores records, entities, aliases and edges. ask.py uses rules for person, time and sum/count/avg intent before reading linked rows; its client parameter does not currently drive model-generated SQL."
+        },
+        "image": {
+          "light": "/assets/presentation/architecture-light.svg",
+          "dark": "/assets/presentation/architecture-dark.svg",
+          "alt": {
+            "zh": "实现中的分工",
+            "en": "How the implementation fits together"
+          }
+        }
+      },
+      {
+        "title": {
+          "zh": "接入现有工作流",
+          "en": "Connect existing workflows"
+        },
+        "body": {
+          "zh": "MineKG 将微信文本、支付宝 CSV、特定银行 PDF 和笔记导出整理到 SQLite，建立实体别名关联，并为简单查询返回原始行来源。",
+          "en": "MineKG imports WeChat text, Alipay CSV, supported bank PDFs and notes into SQLite, links entity aliases and returns source rows with simple aggregate queries."
+        },
+        "image": {
+          "light": "/assets/presentation/integrations-light.svg",
+          "dark": "/assets/presentation/integrations-dark.svg",
+          "alt": {
+            "zh": "接入现有工作流",
+            "en": "Connect existing workflows"
+          }
+        }
+      }
+    ],
+    "details": [
+      {
+        "title": {
+          "zh": "配置与边界",
+          "en": "Configuration and limits"
+        },
+        "body": {
+          "zh": "规则链接不是身份确认，金额合计不是完整账务结论。",
+          "en": "Rule linkage is not identity confirmation, and amount aggregation is not a complete accounting conclusion."
+        }
+      }
+    ]
   },
+  "demo": {
+    "title": {
+      "zh": "运行自带示例",
+      "en": "Run the supplied example"
+    },
+    "note": {
+      "zh": "v0.1.0 的真实规则导入、链接和 SQLite 查询。没有真实个人数据、模型请求或银行 PDF 解析验收；临时数据库结束后删除。",
+      "en": "Real rule-based import, linkage and SQLite querying on v0.1.0. No real personal data, model request or bank-PDF acceptance is involved; the temporary database is removed afterward."
+    },
+    "source": "https://github.com/SuperMarioYL/minekg/blob/main/docs/demo-results.json",
+    "steps": [
+      {
+        "label": {
+          "zh": "运行 1",
+          "en": "Run 1"
+        },
+        "body": {
+          "zh": "仓库三种构造导出产生 11 条记录。规则将“小张”关联到 person:张三，2025 年查询返回 500.00 元，来源是 200 与 300 两条金额记录，同时保留 1 个歧义报告。该合计把金额字段相加，不是把收入与支出相抵后的净额。",
+          "en": "Three bundled synthetic export formats produce eleven records. Rules link 小张 to person:张三; the explicit 2025 query returns 500.00 yuan from two amounts, 200 and 300, while retaining one ambiguity. This sums amount fields; it is not net income minus expenditure."
+        },
+        "image": "/assets/presentation/demo-0-light.svg",
+        "imageDark": "/assets/presentation/demo-0-dark.svg",
+        "command": "python examples/presentation_demo.py",
+        "output": "{\n  \"records\": 11,\n  \"sources\": [\n    \"alipay\",\n    \"notes\",\n    \"wechat\"\n  ],\n  \"canonical_id\": \"person:张三\",\n  \"answer\": \"500.00 元\",\n  \"amounts\": [\n    200.0,\n    300.0\n  ],\n  \"provenance_rows\": 2,\n  \"ambiguities\": 1\n}\n"
+      }
+    ]
+  },
+  "quickstart": {
+    "title": {
+      "zh": "运行完整示例",
+      "en": "Run the complete example"
+    },
+    "body": {
+      "zh": "需要 Python 3.10+。安装可能联网；自清理示例显式使用规则路径，不读取用户的 MineKG 数据目录或模型配置。",
+      "en": "Requires Python 3.10+. Installation may need network access; the self-cleaning example explicitly uses rules without reading the user’s MineKG data directory or model configuration."
+    },
+    "steps": [
+      {
+        "title": {
+          "zh": "准备环境",
+          "en": "Prepare the environment"
+        },
+        "code": "git clone https://github.com/SuperMarioYL/minekg.git\ncd minekg\npython3 -m venv .venv\nsource .venv/bin/activate\npython -m pip install -e ."
+      },
+      {
+        "title": {
+          "zh": "运行本地示例",
+          "en": "Run the local example"
+        },
+        "code": "python examples/presentation_demo.py"
+      }
+    ]
+  },
+  "limitations": [
+    {
+      "zh": "规则链接不是身份确认，金额合计不是完整账务结论。",
+      "en": "Rule linkage is not identity confirmation, and amount aggregation is not a complete accounting conclusion."
+    },
+    {
+      "zh": "可选模型路径可能向配置服务发送敏感记录片段；示例未调用。",
+      "en": "The optional model path may send sensitive record snippets to its configured service; the demo does not call it."
+    }
+  ],
   "footer": {
     "tag": {
-      "zh": "MineKG — 本地优先，把你散落的账单拼成一张能问答的图。MIT 开源。",
-      "en": "MineKG — local first, turning your scattered bills into a graph you can ask. MIT open source."
+      "zh": "Python 3.10+ · MIT",
+      "en": "Python 3.10+ · MIT"
     }
   }
 }
