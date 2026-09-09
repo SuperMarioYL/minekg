@@ -11,7 +11,8 @@
   "meta": {
     "visual_profile": "neon-particle",
     "demo_source": "docs/demo-results.json",
-    "implementation_version": "0.1.0"
+    "implementation_version": "0.2.0",
+    "content_version": "v0.2.0"
   },
   "hero": {
     "eyebrow": {
@@ -175,8 +176,8 @@
       "en": "Run the supplied example"
     },
     "note": {
-      "zh": "v0.1.0 的真实规则导入、链接和 SQLite 查询。没有真实个人数据、模型请求或银行 PDF 解析验收；临时数据库结束后删除。",
-      "en": "Real rule-based import, linkage and SQLite querying on v0.1.0. No real personal data, model request or bank-PDF acceptance is involved; the temporary database is removed afterward."
+      "zh": "v0.2.0 的真实规则导入、链接和 SQLite 查询。没有真实个人数据、模型请求或银行 PDF 解析验收；临时数据库结束后删除。",
+      "en": "Real rule-based import, linkage and SQLite querying on v0.2.0. No real personal data, model request or bank-PDF acceptance is involved; the temporary database is removed afterward."
     },
     "source": "https://github.com/SuperMarioYL/minekg/blob/main/docs/demo-results.json",
     "steps": [
@@ -234,8 +235,8 @@
   ],
   "footer": {
     "tag": {
-      "zh": "Python 3.10+ · MIT",
-      "en": "Python 3.10+ · MIT"
+      "zh": "Python 3.10+ · MIT · v0.2.0",
+      "en": "Python 3.10+ · MIT · v0.2.0"
     }
   }
 }

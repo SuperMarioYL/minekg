@@ -20,6 +20,7 @@ from __future__ import annotations
 import re
 from dataclasses import asdict, dataclass, field
 from datetime import datetime
+from pathlib import Path
 
 from . import kg
 
@@ -148,6 +149,14 @@ def _year_of_ts(ts: str | None) -> int | None:
 def ask(question: str, db_path=None, client=None) -> Answer:
     """Answer a natural-language question over the KG."""
     db_path = db_path or kg.db_path()
+    if not Path(db_path).exists():
+        # KG not built yet — guide the user instead of raising on missing tables.
+        return Answer(
+            question=question,
+            answer="未在知识图谱中找到对应的人名/实体",
+            value=None, unit=None, canonical_id=None,
+            note="先运行 minekg ingest 与 minekg link 构建图谱",
+        )
     intent = _parse_intent(question)
     scope, scope_val = _parse_time_scope(question)
     cid, alias = _find_person(question, db_path)

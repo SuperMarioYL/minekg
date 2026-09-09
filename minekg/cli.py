@@ -73,7 +73,10 @@ def config(
     console.print(f"home     : {home_dir()}")
     console.print(f"records  : {records_path()}")
     console.print(f"kg (db)  : {db_path()}")
-    console.print(f"qwen key : {masked if (show and key) else (masked or '(未配置, 使用规则模式)')}")
+    if show and key:
+        console.print(f"qwen key : {key}")
+    else:
+        console.print(f"qwen key : {masked or '(未配置, 使用规则模式)'}")
 
 
 @app.command()
@@ -109,6 +112,9 @@ def link(
 
     home_dir().mkdir(parents=True, exist_ok=True)
     records_path_arg = str(records_arg) if records_arg else records_path()
+    # The KG lives next to the records file when --records points at one, so
+    # `link --records X` and `ask --records X` read/write the same db.
+    db = str(records_arg.parent / "minekg.db") if records_arg else db_path()
     records = from_jsonl(records_path_arg)
     if not records:
         console.print("[yellow]no records found — run `minekg ingest` first.[/yellow]")
@@ -118,12 +124,12 @@ def link(
     ner.extract_many(records, client=client, model=model)
     result = do_link(records, client=client)
 
-    reset_db(db_path())
-    write_records(records, db_path())
-    write_linkage(result, db_path())
+    reset_db(db)
+    write_records(records, db)
+    write_linkage(result, db)
 
     # report
-    console.print(f"[green]linked {len(result.entities)} entities → {db_path()}[/green]")
+    console.print(f"[green]linked {len(result.entities)} entities → {db}[/green]")
     t = Table(title="canonical persons")
     t.add_column("canonical_id", style="magenta")
     t.add_column("aliases")
@@ -194,10 +200,23 @@ def resolve() -> None:
     )
 
 
+def _version_callback(value: bool) -> None:
+    if value:
+        console.print(f"minekg {__version__}")
+        raise typer.Exit()
+
+
 @app.callback()
-def main() -> None:
+def main(
+    version: bool = typer.Option(
+        None,
+        "--version",
+        help="Show the minekg version and exit.",
+        callback=_version_callback,
+        is_eager=True,
+    ),
+) -> None:
     """MineKG — local-first personal knowledge graph for Chinese data exports."""
-    pass
 
 
 def cli_entry() -> None:  # entry point target

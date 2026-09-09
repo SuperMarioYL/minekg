@@ -32,8 +32,16 @@ _DATE_RE = re.compile(
     r"^(\d{4}[-/年]\d{1,2}[-/月]\d{1,2}日?|\d{8})\b"
 )
 # A money amount: optional sign, digits with optional thousands sep, optional
-# 2 decimals. Negative 支出 is shown as a leading "-".
-_MONEY_RE = re.compile(r"-?\d{1,3}(?:,\d{3})*(?:\.\d{1,2})|-?\d+\.\d{1,2}")
+# 2 decimals. Negative 支出 is shown as a leading "-". Statements that print
+# whole numbers ("500") or comma-grouped integers ("1,200") must parse too, so
+# the decimal part is optional — but a bare integer is anchored on digit
+# boundaries and capped at 7 digits so long transaction/account numbers stay
+# non-money tokens.
+_MONEY_RE = re.compile(
+    r"-?\d{1,3}(?:,\d{3})+(?:\.\d{1,2})?"  # 1,200 / 1,200.00
+    r"|-?\d+\.\d{1,2}"                     # 500.00
+    r"|(?<!\d)-?\d{1,7}(?!\d)"             # 500 (whole-number amount)
+)
 
 _ORG_SUFFIX = (
     "公司", "银行", "集团", "有限公司", "超市", "便利店", "商店",
