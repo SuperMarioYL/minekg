@@ -91,7 +91,7 @@ MINEKG_HOME 默认 ~/.minekg，包含 records.jsonl、minekg.db 和 config.json�
 
 ## 运行记录
 
-v0.1.0 的真实规则导入、链接和 SQLite 查询。没有真实个人数据、模型请求或银行 PDF 解析验收；临时数据库结束后删除。
+v0.3.0 的真实规则导入、链接和 SQLite 查询。没有真实个人数据、模型请求或银行 PDF 解析验收；临时数据库结束后删除。
 
 [输入、命令和完整输出](docs/demo-results.json)
 

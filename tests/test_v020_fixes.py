@@ -172,7 +172,7 @@ class TestVersionSurface:
 
         out = CliRunner().invoke(app, ["--version"]).output
         assert __version__ in out
-        assert "0.2.0" in out
+        assert "0.3.0" in out
 
     def test_version_file_matches_package(self):
         from pathlib import Path

@@ -5,8 +5,8 @@ Commands::
     minekg config [--dashscope-key KEY]   show / set the DashScope (qwen) key
     minekg ingest ./exports               auto-detect + emit unified Record JSONL
     minekg link                           中文 NER + 跨源 canonical_id → SQLite KG
-    minekg ask "<自然语言问题>"            NL → SQL over the KG + 逐行 provenance
-    minekg resolve                        (stub — manual TUI lands in a later milestone)
+    minekg ask "<自然语言问题>"            NL → answer over the KG + 逐行 provenance
+    minekg resolve                        逐条确认/拆分 link 报告的歧义实体对
 
 Everything lives under ``~/.minekg`` (or ``$MINEKG_HOME``), so a raw export
 file never leaves the machine.
@@ -84,6 +84,13 @@ def ingest(
     exports_dir: Path = typer.Argument(..., help="dir with alipay.csv / bank.pdf / wechat.txt / notes.md"),
 ) -> None:
     """Auto-detect source files and emit unified Record JSONL."""
+    if not exports_dir.exists():
+        console.print(
+            f"[yellow]未找到目录: {exports_dir} — 请传入包含 alipay.csv / "
+            "bank.pdf / wechat.txt / notes.md 的导出目录。[/yellow]"
+        )
+        raise typer.Exit(1)
+
     from . import ingest as do_ingest
 
     home_dir().mkdir(parents=True, exist_ok=True)
@@ -192,11 +199,28 @@ def ask(
 
 
 @app.command()
-def resolve() -> None:
-    """Confirm / merge flagged entity pairs (rich TUI — lands in a later milestone)."""
+def resolve(
+    records_arg: Path = typer.Option(
+        None, "--records", help="records JSONL (default ~/.minekg/records.jsonl)"
+    ),
+) -> None:
+    """Confirm / split the flagged entity pairs reported by `minekg link`."""
+    from .resolve import run as do_resolve
+
+    db = str(records_arg.parent / "minekg.db") if records_arg else db_path()
+    if not Path(db).exists():
+        console.print(
+            "[yellow]no KG found — run `minekg ingest` and `minekg link` first.[/yellow]"
+        )
+        return
+
+    decisions = do_resolve(db, echo=console.print)
+    accepted = sum(1 for _, d in decisions if d == "accepted")
+    split = sum(1 for _, d in decisions if d == "split")
+    skipped = sum(1 for _, d in decisions if d == "skipped")
     console.print(
-        "[yellow]minekg resolve[/yellow] — manual resolution TUI is a follow-on "
-        "milestone. For now, ambiguous links are reported by `minekg link`."
+        f"[green]resolve done:[/green] {accepted} merged, {split} split, "
+        f"{skipped} kept for later"
     )
 
 

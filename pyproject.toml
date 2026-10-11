@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "minekg"
-version = "0.2.0"
+version = "0.3.0"
 description = "把你散落的微信/支付宝/银行流水与笔记融合成可自然语言查询的个人知识图谱"
 readme = "README.md"
 license = { text = "MIT" }

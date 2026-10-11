@@ -91,7 +91,7 @@ Queries support the implemented person/time/aggregation rules rather than arbitr
 
 ## Recorded demo
 
-Real rule-based import, linkage and SQLite querying on v0.1.0. No real personal data, model request or bank-PDF acceptance is involved; the temporary database is removed afterward.
+Real rule-based import, linkage and SQLite querying on v0.3.0. No real personal data, model request or bank-PDF acceptance is involved; the temporary database is removed afterward.
 
 [Inputs, commands and complete output](docs/demo-results.json)
 

@@ -4,6 +4,38 @@ All notable changes to MineKG are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow
 [SemVer](https://semver.org/).
 
+## [0.3.0] - 2026-10-12
+
+### Fixed
+
+- **`minekg ask` 不再为图谱里不存在的人编造 "0.00 元" 答案。** 此前 `ask("和王五相关的…")`
+  在 KG 从未见过王五时会落到兜底分支、凭空返回 `person:王五` 与 "0.00 元" 的看似确定的答案；
+  现在返回既定的引导话术（"未在知识图谱中找到对应的人名/实体，先运行 minekg ingest 与
+  minekg link 构建图谱"）。图谱里真实存在的实体（含同形 canonical）行为不变。
+  同时修正 `ask.py` 模块文档：qwen 的 `client` 参数目前不驱动模型生成 SQL，文档现如实说明。
+- **`minekg ingest` 指向不存在的目录时给出友好错误。** 此前直接抛出原始
+  `FileNotFoundError` traceback；现在打印缺失路径与期望的导出布局（alipay.csv / bank.pdf /
+  wechat.txt / notes.md）并以退出码 1 结束。
+- **Release workflow 真正把构建产物挂到 GitHub Release。** 此前只上传会过期的 CI artifact，
+  GitHub Release 页面 0 个附件（v0.2.0 实测）；现在 tag 构建完成后把 wheel / sdist /
+  checksums.txt 上传到对应 Release。
+- **README 记录的演示版本与 demo-results.json 对齐。** README/README.en 声称演示录制于
+  v0.1.0，而其链接的 docs/demo-results.json 记录的是 0.2.0；现已在 0.3.0 重新离线运行演示
+  脚本并同步三处版本说明（README.md / README.en.md / web/site.json）。
+
+### Added
+
+- **`minekg resolve` 交互式复核（m3 合约）。** 逐条展示 `link` 报告的歧义实体对，支持
+  `[y] 确认合并`（合并生效）、`[n] 拆分独立`（首个称呼移回独立 canonical，仅迁移只提及该
+  称呼的记录边）、`[s] 跳过`、`[q] 退出`；与 link/ask 一致支持 `--records` 定位 KG。
+  拒绝拆分走确定性的文本匹配启发式，不改 KG schema。
+
+### Changed
+
+- 版本号在所有表面同步升至 0.3.0：`VERSION`、`pyproject.toml`、
+  `minekg.__version__`、`web/site.json`（`meta.implementation_version` + footer `· v0.3.0`）、
+  README/README.en 演示版本说明、`docs/demo-results.json`（0.3.0 下重录，输出不变）。
+
 ## [0.2.0] - 2026-09-09
 
 ### Fixed

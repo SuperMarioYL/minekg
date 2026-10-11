@@ -185,6 +185,25 @@ def canonical_for_surface(surface: str, path: Optional[str] = None) -> str | Non
         conn.close()
 
 
+def canonical_exists(canonical_id: str, path: Optional[str] = None) -> bool:
+    """True when ``canonical_id`` is a known canonical in the KG."""
+    conn = connect(path)
+    try:
+        row = conn.execute(
+            "SELECT 1 FROM aliases WHERE canonical_id = ? LIMIT 1",
+            (canonical_id,),
+        ).fetchone()
+        if row:
+            return True
+        row = conn.execute(
+            "SELECT 1 FROM entities WHERE canonical_id = ? LIMIT 1",
+            (canonical_id,),
+        ).fetchone()
+        return row is not None
+    finally:
+        conn.close()
+
+
 def records_for_canonical(canonical_id: str, path: Optional[str] = None) -> list:
     """All records linked to a canonical entity, with provenance."""
     conn = connect(path)

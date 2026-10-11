@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "fixture": "Bundled synthetic WeChat, Alipay and note exports, queried for explicit year 2025 using rule extraction/linkage and temporary SQLite. No model request or bank PDF tested.",
   "steps": [
     {

@@ -1,14 +1,16 @@
-"""Natural-language → SQL → answer over the local KG.
+"""Natural-language → answer over the local KG.
 
-Two backends:
+**One backend, deterministic (used by tests + the offline demo):** parses the
+question for a person mention, a time scope and an aggregation intent, then
+resolves the person to a ``canonical_id`` via the aliases table and computes
+the answer over the linked records. Questions about a person the KG has never
+seen return the "未在知识图谱中找到" guidance answer instead of a fabricated
+result.
 
-1. **Rule fallback** (always available, deterministic, used by tests + the
-   offline demo): parses the question for a person mention, a time scope and
-   an aggregation intent, then resolves the person to a ``canonical_id``
-   via the aliases table and computes the answer over the linked records.
-2. **qwen (DashScope)** — when a key is configured, the KG schema + the
-   question are sent to qwen, which returns a ``SELECT`` statement executed
-   against the SQLite KG. Any non-SELECT / error falls back to the rule path.
+The optional ``client`` parameter (DashScope/qwen) is currently **inert** —
+it is accepted for forward-compatibility but never drives model-generated
+SQL. Model-generated SQL is out of scope for now; the README records this
+boundary.
 
 The answer always carries per-row provenance (source file, line, ts,
 counterparty, amount, canonical_id) so every number is traceable to a row
@@ -130,7 +132,11 @@ def _find_person(q: str, db_path) -> tuple:
             cid2 = kg.canonical_for_surface(key, db_path)
             if cid2:
                 return cid2, key
-            return (f"person:{key}", key)
+            # the surface resolves to nothing the KG knows; a fabricated
+            # `person:<key>` id would answer "0.00 元" for someone who was
+            # never ingested — return None so ask() emits the guidance answer.
+            if kg.canonical_exists(f"person:{key}", db_path):
+                return f"person:{key}", key
     return None, None
 
 

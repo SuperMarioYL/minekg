@@ -46,3 +46,6 @@ DRIFT_REPORT.md
 # assistant tooling
 .claude/
 CLAUDE.md
+
+# local env lock (project installs via pip -e .)
+uv.lock

@@ -28,6 +28,13 @@ jobs:
         with:
           name: dist
           path: dist/*
+      - name: Attach dist to the GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 \
+            || gh release create "$GITHUB_REF_NAME" --title "minekg $GITHUB_REF_NAME" --generate-notes
+          gh release upload "$GITHUB_REF_NAME" dist/* --clobber
 
   # Opt-in PyPI trusted publishing. A fresh repo has no Trusted Publisher
   # registered, so this job is skipped until the owner sets the
